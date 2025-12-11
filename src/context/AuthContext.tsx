@@ -39,11 +39,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify(credentials),
       });
 
-      const data: AuthResponse = await response.json();
+      const data: any = await response.json();
 
-      if (data.success && data.user && data.token) {
-        setUser(data.user);
-        setToken(data.token);
+      // Extract user and token from data.data if it's nested, or from data directly
+      const user = data.data?.user || data.user;
+      const token = data.data?.token || data.token;
+
+      if (data.success && user && token) {
+        setUser(user);
+        setToken(token);
         toast.success('Welcome back! 👋');
         return true;
       } else {
@@ -74,11 +78,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify(data),
       });
 
-      const result: AuthResponse = await response.json();
+      const result: any = await response.json();
 
-      if (result.success && result.user && result.token) {
-        setUser(result.user);
-        setToken(result.token);
+      // Extract user and token from result.data if it's nested, or from result directly
+      const user = result.data?.user || result.user;
+      const token = result.data?.token || result.token;
+
+      if (result.success && user && token) {
+        setUser(user);
+        setToken(token);
         toast.success('Welcome to SubTract! 🎉');
         return true;
       } else {
