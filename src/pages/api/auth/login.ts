@@ -16,7 +16,7 @@ export default function handler(
   const { email, password } = req.body;
 
   // Dummy validation - in production, this would validate against a database
-  if (email === 'user@subtract.com' && password === 'password123') {
+  if (email === 'user@subtract.com' && password === 'Demo@2025Secure!') {
     const token = `dummy-jwt-token-${Date.now()}`;
     const user = {
       ...DUMMY_USER,
