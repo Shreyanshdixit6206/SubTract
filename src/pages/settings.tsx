@@ -8,7 +8,7 @@ import { Navigation } from '@/components/Navigation';
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, logout } = useAuth();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,6 +20,12 @@ export default function SettingsPage() {
       router.push('/');
     }
   }, [isAuthenticated, isLoading, router, mounted]);
+
+  const handleLogout = async () => {
+    await logout();
+    // Redirect to landing page after logout
+    router.push('/landing');
+  };
 
   if (!mounted || isLoading) {
     return (
@@ -48,7 +54,7 @@ export default function SettingsPage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Settings onBack={() => router.push('/dashboard')} />
+            <Settings onBack={() => router.push('/dashboard')} onLogout={handleLogout} />
           </motion.div>
         </main>
       </div>

@@ -5,12 +5,25 @@ import { User, Bell, Shield, Globe, LogOut, CreditCard, Download, Trash2 } from 
 
 interface SettingsProps {
   onBack: () => void;
+  onLogout?: () => void;
 }
 
-export function Settings({ onBack }: SettingsProps) {
+export function Settings({ onBack, onLogout }: SettingsProps) {
   const [notifications, setNotifications] = useState(true);
   const [language, setLanguage] = useState('english');
   const [currency, setCurrency] = useState('inr');
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      if (onLogout) {
+        await onLogout();
+      }
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
   
   return (
     <div className="min-h-screen p-6 md:p-8 max-w-4xl mx-auto">
@@ -158,8 +171,14 @@ export function Settings({ onBack }: SettingsProps) {
       </GlassCard>
       
       {/* Logout */}
-      <Button variant="ghost" icon={<LogOut className="w-5 h-5" />} className="w-full">
-        Log Out
+      <Button 
+        variant="ghost" 
+        icon={<LogOut className="w-5 h-5" />} 
+        className="w-full"
+        onClick={handleLogout}
+        disabled={isLoggingOut}
+      >
+        {isLoggingOut ? 'Logging out...' : 'Log Out'}
       </Button>
       
       {/* App Info */}

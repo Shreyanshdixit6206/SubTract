@@ -140,10 +140,13 @@ export function Insights({ onBack }: InsightsProps) {
               <YAxis stroke="#9CA3AF" />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'rgba(15, 15, 30, 0.95)', 
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: '#FFFFFF', 
+                  border: '2px solid #8B5CF6',
                   borderRadius: '12px',
-                  color: '#E5E7EB'
+                  color: '#1F2937',
+                  padding: '12px 16px',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                  fontWeight: 500
                 }}
                 formatter={(value: number) => [`₹${value.toLocaleString('en-IN')}`, 'Spending']}
               />
@@ -186,10 +189,13 @@ export function Insights({ onBack }: InsightsProps) {
                 </Pie>
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'rgba(15, 15, 30, 0.95)', 
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    backgroundColor: '#FFFFFF', 
+                    border: '2px solid #8B5CF6',
                     borderRadius: '12px',
-                    color: '#E5E7EB'
+                    color: '#1F2937',
+                    padding: '12px 16px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                    fontWeight: 500
                   }}
                   formatter={(value: number) => `₹${value.toLocaleString('en-IN')}`}
                 />
