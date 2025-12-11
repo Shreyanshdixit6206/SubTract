@@ -32,6 +32,6 @@ export default function handler(
 
   return res.status(401).json({
     success: false,
-    error: 'Invalid credentials. Use email: user@subtract.com, password: password123',
+    error: 'Invalid credentials. Use email: user@subtract.com, password: Demo@2025Secure!',
   });
 }

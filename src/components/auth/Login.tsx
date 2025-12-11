@@ -15,7 +15,7 @@ interface LoginProps {
 
 export function Login({ onSwitchToSignup, onForgotPassword }: LoginProps) {
   const [email, setEmail] = useState('user@subtract.com');
-  const [password, setPassword] = useState('password123');
+  const [password, setPassword] = useState('Demo@2025Secure!');
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoading } = useAuth();
   const { theme } = useTheme();
