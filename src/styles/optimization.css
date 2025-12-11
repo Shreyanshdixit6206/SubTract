@@ -1,0 +1,63 @@
+/**
+ * CSS Optimization Guidelines
+ * 
+ * 1. Use CSS variables for theming instead of duplicating styles
+ * 2. Use Tailwind utilities instead of custom CSS when possible
+ * 3. Minimize @font-face declarations
+ * 4. Use system fonts as fallbacks
+ * 5. Lazy load Google Fonts or use preload with display=swap
+ */
+
+/* Optimize font loading - display:swap prevents FOUT */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap");
+
+/* CSS custom properties for efficient theme switching */
+:root {
+  /* Font stack with system font fallbacks */
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  /* Core colors (minimal set) */
+  --color-primary: #8B5CF6;
+  --color-primary-light: #A78BFA;
+  --color-secondary: #06B6D4;
+  --color-accent: #A855F7;
+  --color-bg: #0F0F1E;
+  --color-text: #E5E7EB;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Optimize animations - use transform instead of positional changes */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Critical CSS for above-the-fold content */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Efficient class utilities for common patterns */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Preload critical resources in head */
